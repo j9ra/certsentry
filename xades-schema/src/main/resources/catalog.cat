@@ -1,0 +1,3 @@
+REWRITE_SYSTEM "http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/" "maven:pl.grabojan.certsentry:xmldsig-schema:jar::0.0.1-SNAPSHOT!/"
+REWRITE_SYSTEM "http://www.w3.org/2001/XMLSchema.dtd" "maven:pl.grabojan.certsentry:xmldsig-schema:jar::0.0.1-SNAPSHOT!/XMLSchema.dtd"
+REWRITE_SYSTEM "http://www.w3.org/2001/datatypes.dtd" "maven:pl.grabojan.certsentry:xmldsig-schema:jar::0.0.1-SNAPSHOT!/datatypes.dtd"
