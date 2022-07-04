@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.grabojan.certsentry</groupId>
+  <artifactId>tsladdtyp-schema</artifactId>
+  <version>0.1.0</version>
+  
+  <properties>
+   <java.version>1.8</java.version>
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>pl.grabojan.certsentry</groupId>
+  		<artifactId>xades-schema</artifactId>
+  		<version>0.1.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>pl.grabojan.certsentry</groupId>
+  		<artifactId>tsl-schema</artifactId>
+  		<version>0.1.0</version>
+  	</dependency>
+  </dependencies>
+  
+  <build>
+  <plugins>
+    <plugin>    
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+        	<parameters>true</parameters>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
+    </plugin>
+    
+    <!-- jaxb2 plugin -->
+	<plugin>
+		<groupId>org.jvnet.jaxb2.maven2</groupId>
+		<artifactId>maven-jaxb2-plugin</artifactId>
+		<version>0.14.0</version>
+		<executions>
+			<execution>
+				<goals>
+					<goal>generate</goal>
+				</goals>
+				<configuration>
+					<schemaDirectory>src/main/resources</schemaDirectory>
+					<schemaIncludes>
+						<include>tsl_additionaltypes.xsd</include>
+					</schemaIncludes>
+	
+					<bindingDirectory>src/main/resources</bindingDirectory>
+					<bindingIncludes>
+						<include>*.xjb</include>
+					</bindingIncludes>
+	
+					<catalog>src/main/resources/catalog.cat</catalog>
+					<extension>true</extension>
+					<useDependenciesAsEpisodes>true</useDependenciesAsEpisodes>
+					<plugins>
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics</artifactId>
+							<version>0.12.0</version>
+						</plugin>
+					</plugins>
+					<generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
+					<writeCode>true</writeCode>
+					<readOnly>false</readOnly>
+					<packageLevelAnnotations>false</packageLevelAnnotations>
+					<noFileHeader>false</noFileHeader>
+					<enableIntrospection>false</enableIntrospection>
+					<markGenerated>false</markGenerated>
+	
+					<removeOldOutput>true</removeOldOutput>
+					<cleanPackageDirectories>true</cleanPackageDirectories>
+					<forceRegenerate>false</forceRegenerate>
+	
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<strict>false</strict>
+					<disableXmlSecurity>true</disableXmlSecurity>
+					<accessExternalSchema>all</accessExternalSchema>
+					<accessExternalDTD>all</accessExternalDTD>
+					<verbose>false</verbose>
+	
+				</configuration>
+			</execution>
+		</executions>
+	</plugin>
+
+    <plugin>
+		<artifactId>maven-antrun-plugin</artifactId>
+		<executions>
+			<execution>
+				<phase>process-sources</phase>
+				<configuration>
+					<tasks>
+						<delete dir="${basedir}/target/generated-sources/xjc/pl/grabojan/certsentry/schema/tsl"/>
+					</tasks>
+				</configuration>
+				<goals>
+					<goal>run</goal>
+				</goals>
+			</execution>
+		</executions>
+	</plugin>
+
+    
+</plugins>
+
+</build>
+  
+  
+</project>
