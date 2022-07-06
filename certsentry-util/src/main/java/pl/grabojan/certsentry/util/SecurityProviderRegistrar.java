@@ -1,5 +1,6 @@
 package pl.grabojan.certsentry.util;
 
+import java.lang.reflect.InvocationTargetException;
 import java.security.Provider;
 import java.security.Security;
 import java.util.Arrays;
@@ -20,9 +21,9 @@ public class SecurityProviderRegistrar {
 		for (Class<?> clazzProv : providers) {
 			try {
 				log.info("Adding provider: {}", clazzProv.getName());
-				Provider p = (Provider)clazzProv.newInstance();
+				Provider p = (Provider)clazzProv.getDeclaredConstructor().newInstance();
 				Security.addProvider(p);
-			} catch (InstantiationException|IllegalAccessException e) {
+			} catch (InstantiationException|IllegalAccessException|NoSuchMethodException|InvocationTargetException e) {
 				log.error("Unable to instatiate class: " + clazzProv, e);
 				throw new RuntimeException("Provider registration failed", e);
 			} 
@@ -31,7 +32,7 @@ public class SecurityProviderRegistrar {
 		if(log.isDebugEnabled()) {
 			Arrays.stream(Security.getProviders()).forEach(prov ->
 				log.debug(" Prov: {}, version: {} info: [{}] ",
-						prov.getName(), prov.getVersion(), prov.getInfo()));
+						prov.getName(), prov.getVersionStr(), prov.getInfo()));
 		}
 		
 	}
