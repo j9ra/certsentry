@@ -3,45 +3,61 @@
   <groupId>pl.grabojan.certsentry</groupId>
   <artifactId>xmldsig-schema</artifactId>
   <packaging>jar</packaging>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   
   <properties>
-   <java.version>1.8</java.version>
+   <java.version>11</java.version>
    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <build>
   
-  <plugins>
-    <plugin>    
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-        	<parameters>true</parameters>
-            <source>1.8</source>
-            <target>1.8</target>
-        </configuration>
-    </plugin>
-    
-    <!-- jaxb2 plugin -->
-	<plugin>
-		<groupId>org.jvnet.jaxb2.maven2</groupId>
-		<artifactId>maven-jaxb2-plugin</artifactId>
-		<version>0.14.0</version>
-		<executions>
-			<execution>
-				<goals>
-					<goal>generate</goal>
-				</goals>
+  	<dependencies>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.3</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
 				<configuration>
-					<schemaDirectory>src/main/resources</schemaDirectory>
-					<schemaIncludes>
-						<include>xmldsig-core-schema.xsd</include>
-					</schemaIncludes>					
-					<bindingDirectory>src/main/resources</bindingDirectory>
-					<bindingIncludes>
-						<include>*.xjb</include>
-					</bindingIncludes>
-					<catalog>src/main/resources/catalog.cat</catalog>			
+					<parameters>true</parameters>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+
+			<!-- jaxb2 plugin -->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources</schemaDirectory>
+							<schemaIncludes>
+								<include>xmldsig-core-schema.xsd</include>
+							</schemaIncludes>
+							<bindingDirectory>src/main/resources</bindingDirectory>
+							<bindingIncludes>
+								<include>*.xjb</include>
+							</bindingIncludes>
+							<catalog>src/main/resources/catalog.cat</catalog>
 							<plugins>
 								<plugin>
 									<groupId>org.jvnet.jaxb2_commons</groupId>
@@ -49,31 +65,31 @@
 									<version>0.12.0</version>
 								</plugin>
 							</plugins>
-					<generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
-					<writeCode>true</writeCode>
-					<readOnly>false</readOnly>
-					<packageLevelAnnotations>false</packageLevelAnnotations>
-					<noFileHeader>false</noFileHeader>
-					<enableIntrospection>false</enableIntrospection>
-					<markGenerated>false</markGenerated>
-					<removeOldOutput>true</removeOldOutput>
-					<cleanPackageDirectories>true</cleanPackageDirectories>
-					<forceRegenerate>false</forceRegenerate>
-					<encoding>${project.build.sourceEncoding}</encoding>
-					<strict>false</strict>
-					<disableXmlSecurity>true</disableXmlSecurity>
-					<accessExternalSchema>all</accessExternalSchema>
-					<accessExternalDTD>all</accessExternalDTD>
-					<verbose>false</verbose>
-					
-				</configuration>
-			</execution>
-		</executions>
-	</plugin>
-    
-    
-</plugins>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
+							<writeCode>true</writeCode>
+							<readOnly>false</readOnly>
+							<packageLevelAnnotations>false</packageLevelAnnotations>
+							<noFileHeader>false</noFileHeader>
+							<enableIntrospection>false</enableIntrospection>
+							<markGenerated>false</markGenerated>
+							<removeOldOutput>true</removeOldOutput>
+							<cleanPackageDirectories>true</cleanPackageDirectories>
+							<forceRegenerate>false</forceRegenerate>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<strict>false</strict>
+							<disableXmlSecurity>true</disableXmlSecurity>
+							<accessExternalSchema>all</accessExternalSchema>
+							<accessExternalDTD>all</accessExternalDTD>
+							<verbose>false</verbose>
 
-</build>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+
+	</build>
   
 </project>

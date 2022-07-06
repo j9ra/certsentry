@@ -2,18 +2,29 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.grabojan.certsentry</groupId>
   <artifactId>tslsie-schema</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   
   <properties>
-   <java.version>1.8</java.version>
+   <java.version>11</java.version>
    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   <dependencies>
   	<dependency>
+		<groupId>jakarta.xml.bind</groupId>
+		<artifactId>jakarta.xml.bind-api</artifactId>
+		<version>2.3.3</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.xml.bind</groupId>
+		<artifactId>jaxb-impl</artifactId>
+		<version>2.3.3</version>
+		<scope>runtime</scope>
+	</dependency>
+  	<dependency>
   		<groupId>pl.grabojan.certsentry</groupId>
   		<artifactId>xades-schema</artifactId>
-  		<version>0.1.0</version>
+  		<version>0.1.1</version>
   	</dependency>
   </dependencies>
   
@@ -21,11 +32,11 @@
   <plugins>
     <plugin>    
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.10.1</version>
         <configuration>
         	<parameters>true</parameters>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>11</source>
+            <target>11</target>
         </configuration>
     </plugin>
     
