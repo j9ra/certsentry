@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,7 +25,7 @@ import pl.grabojan.certsentry.data.service.SecUserAppDataService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  {
+public class SecurityConfig { 
 
 	@Autowired
 	private SecUserAppDataService secUserAppDataService;
@@ -36,56 +34,18 @@ public class SecurityConfig  {
 	private Environment env;
 	
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-	return authenticationConfiguration.getAuthenticationManager();
+	public PasswordEncoder encoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+
+	@Bean
+	public AuthenticationEntryPoint forbiddenEntryPoint() {
+		return new HttpStatusEntryPoint(HttpStatus.FORBIDDEN);
 	}
 	
 	@Bean
-    public UserDetailsService users() {
-		
-		boolean initMode = env.getProperty("certsentry.admin.init", Boolean.class, Boolean.FALSE);
-		
-		if(initMode) {
-			String genpass = UUID.randomUUID().toString();
-			System.out.println("------------------------------");
-			System.out.println("ADMIN init mode ENABLED");
-			System.out.println("Please login with credentials: user=admin, password=" + genpass);
-			System.out.println("------------------------------");
-			
-			UserDetails user = User.withUsername("admin").password(encoder().encode(genpass)).roles("ADMIN").build();
-			return new InMemoryUserDetailsManager(user);
-		} else {
-			return userDetailsService();
-		}
-		
-    }
-	
-	
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth)
-//			throws Exception {
-//			
-//			boolean initMode = env.getProperty("certsentry.admin.init", Boolean.class, Boolean.FALSE);
-//		
-//			if(initMode) {
-//				String genpass = UUID.randomUUID().toString();
-//				System.out.println("------------------------------");
-//				System.out.println("ADMIN init mode ENABLED");
-//				System.out.println("Please login with credentials: user=admin, password=" + genpass);
-//				System.out.println("------------------------------");
-//				auth.inMemoryAuthentication().withUser("admin").password(encoder().encode(genpass)).roles("ADMIN");
-//			} else {			
-//				auth
-//				.userDetailsService(userDetailsService())
-//				.passwordEncoder(encoder());	
-//			}
-//		
-//	}
-	
-	
-	 @Bean
-	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		 http
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
 			.authorizeRequests()
 			.antMatchers("/api", "/api/**")
 			.hasRole("ADMIN")
@@ -100,29 +60,23 @@ public class SecurityConfig  {
 		.and()
 			.exceptionHandling().defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), new AntPathRequestMatcher("/api/**"))
 			;
-		 
-		 
-		 
-
-	        return http.build();
-	    }
+        return http.build();
+    }
 	
-	
+	@Bean
+    public UserDetailsService users() {
 		
-	
-	
-	@Bean
-	public PasswordEncoder encoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
-
-	@Bean
-	public AuthenticationEntryPoint forbiddenEntryPoint() {
-		return new HttpStatusEntryPoint(HttpStatus.FORBIDDEN);
-	}
-
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new SecUserDetailsService(secUserAppDataService);
-	}
+		boolean initMode = env.getProperty("certsentry.admin.init", Boolean.class, Boolean.FALSE);	
+		if(initMode) {
+			String genpass = UUID.randomUUID().toString();
+			System.out.println("------------------------------");
+			System.out.println("ADMIN init mode ENABLED");
+			System.out.println("Please login with credentials: user=admin, password=" + genpass);
+			System.out.println("------------------------------");
+			UserDetails user = User.withUsername("admin").password(encoder().encode(genpass)).roles("ADMIN").build();
+			return new InMemoryUserDetailsManager(user);
+		} else {			
+			return new SecUserDetailsService(secUserAppDataService);	
+		}
+    }
 }
