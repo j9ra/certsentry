@@ -34,6 +34,12 @@ public class CombinedAuthenticationProvider extends AbstractUserDetailsAuthentic
 			return apiKeyUserDetailsService.loadUserByApiKey(token);
 		}
 		
+		if(authentication instanceof UsernamePasswordAuthenticationToken) {
+			return apiKeyUserDetailsService.loadUserByUsername(authentication.getName());
+		}
+		
+		log.debug("Class: {}", authentication.getClass());
+		
 		throw new UsernameNotFoundException("User [" + username + "] not found");
 	}
 
