@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "certsentry.pkix.validate_onelevel",
+    "type": "java.lang.String",
+    "description": "PKI chain level validation"
+  },
+  {
+    "name": "certsentry.pkix.revoke_prefer_ocsp",
+    "type": "java.lang.String",
+    "description": "Revocation use OCSP first"
+  },
+  {
+    "name": "certsentry.pkix.revoke_ocsp_usenonce",
+    "type": "java.lang.String",
+    "description": "OCSP request should have nonce"
+  },
+  {
+    "name": "certsentry.cache.host",
+    "type": "java.lang.String",
+    "description": "Redis Cache hostname"
+  },
+  {
+    "name": "certsentry.database.password",
+    "type": "java.lang.String",
+    "description": "Database password"
+  },
+  {
+    "name": "certsentry.database.username",
+    "type": "java.lang.String",
+    "description": "Database username"
+  },
+  {
+    "name": "certsentry.database.host",
+    "type": "java.lang.String",
+    "description": "Database hostname"
+  },
+  {
+    "name": "certsentry.database.name",
+    "type": "java.lang.String",
+    "description": "Database name"
+  },
+  {
+    "name": "certsentry.pkix.revoke_prefer_cdp",
+    "type": "java.lang.String",
+    "description": "Revocation use CRL first"
+  }
+]}
