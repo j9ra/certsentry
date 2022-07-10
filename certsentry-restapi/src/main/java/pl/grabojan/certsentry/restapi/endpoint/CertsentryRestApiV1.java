@@ -65,7 +65,7 @@ public class CertsentryRestApiV1 {
 		return new ResponseEntity<>(null, defaultHeaders(), HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/profiles")
+	@GetMapping("/profile")
 	public List<ProfileResponse> getProfiles() {
 		
 		List<ProfileResponse> profilesRet = profileDataService.
