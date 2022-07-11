@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.ContextConfiguration;
 
 import pl.grabojan.certsentry.data.model.Profile;
 import pl.grabojan.certsentry.data.model.Provider;
@@ -19,6 +20,7 @@ import pl.grabojan.certsentry.data.repository.ProviderRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=Replace.NONE)
+@ContextConfiguration(classes = DataConfig.class)
 class CertsentryDataApplicationTests {
 
 	@Autowired
