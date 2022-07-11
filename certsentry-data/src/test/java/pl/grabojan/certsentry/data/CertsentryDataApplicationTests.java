@@ -37,34 +37,34 @@ class CertsentryDataApplicationTests {
 	void contextLoads() {
 	}
 	
-	@Test
-	@Commit
-	void testProviderFindByName() {
-		
-		Provider provider = new Provider();
-		provider.setName("Test Provider");
-		provider.setTradeName("NIP:111-11-11-111");
-		provider.setInformationUri("http://somesite/somepage/info.html");
-				
-		Provider provider2 = entityManager.persist(provider);
-		
-		List<Provider> provs = providerRepository.findByName("Test Provider");
-		
-		Assertions.assertEquals(1, provs.size());
-		Assertions.assertNotNull(provider2.getId());
-	}
+//	@Test
+//	@Commit
+//	void testProviderFindByName() {
+//		
+//		Provider provider = new Provider();
+//		provider.setName("Test Provider");
+//		provider.setTradeName("NIP:111-11-11-111");
+//		provider.setInformationUri("http://somesite/somepage/info.html");
+//				
+//		Provider provider2 = entityManager.persist(provider);
+//		
+//		List<Provider> provs = providerRepository.findByName("Test Provider");
+//		
+//		Assertions.assertEquals(1, provs.size());
+//		Assertions.assertNotNull(provider2.getId());
+//	}
 	
-	@Test
-	@Commit
-	void testProfileFindByName() {
-		Profile p1 = new Profile();
-		p1.setName("test1");
-		p1.setTerritory("PL");
-		entityManager.persist(p1);
-		
-		Optional<Profile> p2 = profileRepository.findByName("test1");
-		Assertions.assertTrue(p2.isPresent());
-		
-	}
+//	@Test
+//	@Commit
+//	void testProfileFindByName() {
+//		Profile p1 = new Profile();
+//		p1.setName("test1");
+//		p1.setTerritory("PL");
+//		entityManager.persist(p1);
+//		
+//		Optional<Profile> p2 = profileRepository.findByName("test1");
+//		Assertions.assertTrue(p2.isPresent());
+//		
+//	}
 
 }
