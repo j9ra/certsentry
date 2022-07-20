@@ -72,37 +72,37 @@
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>xmldsig-schema</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>xades-schema</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>tsl-schema</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>tsladdtyp-schema</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>tslsie-schema</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>pl.grabojan.certsentry</groupId>
 			<artifactId>certsentry-data</artifactId>
-			<version>0.1.0</version>
+			<version>0.1.1</version>
 		</dependency>
 		
 		<dependency>
