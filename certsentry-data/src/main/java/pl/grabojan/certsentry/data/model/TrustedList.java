@@ -59,7 +59,7 @@ public class TrustedList implements Serializable {
 	private Date listIssue;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="NEXT_UPDATE", nullable = false)
+	@Column(name="NEXT_UPDATE", nullable = true)
 	private Date nextUpdate;
 	
 	@Column(name="LIST_HASH")
