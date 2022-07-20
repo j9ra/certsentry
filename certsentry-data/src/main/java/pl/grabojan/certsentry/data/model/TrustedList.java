@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,8 +59,9 @@ public class TrustedList implements Serializable {
 	@Column(name="LIST_ISSUE", nullable = false)
 	private Date listIssue;
 	
+	@Basic(optional = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="NEXT_UPDATE", nullable = false)
+	@Column(name="NEXT_UPDATE")
 	private Date nextUpdate;
 	
 	@Column(name="LIST_HASH")
