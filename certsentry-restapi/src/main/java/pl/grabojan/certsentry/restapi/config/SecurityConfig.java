@@ -67,7 +67,7 @@ public class SecurityConfig {
 
 	@Bean
 	public CombinedAuthenticationProvider authenticationProvider() {
-		return new CombinedAuthenticationProvider(userDetailsService());
+		return new CombinedAuthenticationProvider(userDetailsService(), encoder());
 	}
 
 	@Bean
