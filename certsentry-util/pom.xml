@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pl.grabojan.certsentry</groupId>
 	<artifactId>certsentry-util</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<name>certsentry-util</name>
 	<description>CertSentry Util</description>
 
