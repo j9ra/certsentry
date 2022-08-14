@@ -125,8 +125,8 @@ public class ResponderController {
 		try {
 			BasicOCSPResp bor = (BasicOCSPResp)OcspClientService.parseOcspResponse(ocspResponse.get()).getResponseObject();
 			
-			log.debug("OCSP response details - producedAt: {}, responderId: {}, thisUpdate: {}, nextUpdate: {}, ",
-					bor.getProducedAt(), bor.getResponderId(), bor.getResponses()[0].getThisUpdate(),
+			log.info("OCSP response details - producedAt: {}, responderId: {}, thisUpdate: {}, nextUpdate: {}, ",
+					bor.getProducedAt(), bor.getResponderId().toASN1Primitive().getName(), bor.getResponses()[0].getThisUpdate(),
 					bor.getResponses()[0].getNextUpdate());
 		} catch (OCSPException e) {
 			log.error("Failed to parse OCSP response", e);
@@ -134,9 +134,11 @@ public class ResponderController {
 		}
 				
 		
-		log.debug("Filling map with OCSP response");
+		log.info("Filling map with OCSP response");
 		objectMap.put(genId, ocspResponse.get());
 		
+		
+		log.info("Registration done");
 		
 		return "OK";
 	}
